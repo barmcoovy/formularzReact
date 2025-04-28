@@ -9,18 +9,19 @@ const Form = () => {
   return (
     <div className="container mt-5">
       <h1>Formularz Rejestracyjny</h1>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="form-group mb-4">
           <label htmlFor="login">Login</label>
           <input
             type="text"
             id="login"
-            className="form-control"
             value={login}
             onChange={(e) => setLogin(e.target.value)}
-            {...(login.length < 2 && login.length > 0
-              ? { className: "form-control is-invalid" }
-              : { className: "form-control" })}
+            className={
+              login.length < 2 && login.length > 0
+                ? "form-control is-invalid"
+                : "form-control"
+            }
           />
           {login.length < 2 && login.length > 0 ? (
             <div className="invalid-feedback">
@@ -33,9 +34,11 @@ const Form = () => {
           <input
             type="password"
             id="password"
-            {...(password.length < 8 && password.length > 0
-              ? { className: "form-control is-invalid" }
-              : { className: "form-control" })}
+            className={
+              password.length < 8 && password.length > 0
+                ? "form-control is-invalid"
+                : "form-control"
+            }
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -50,11 +53,12 @@ const Form = () => {
           <input
             type="email"
             id="email"
-            className="form-control"
-            {...(!email.match("@") && email.length > 0
-              ? { className: "form-control is-invalid" }
-              : { className: "form-control" })}
             value={email}
+            className={
+              !email.match("@") && email.length > 0
+                ? "form-control is-invalid"
+                : "form-control"
+            }
             onChange={(e) => setEmail(e.target.value)}
           />
           {!email.match("@") && email.length > 0 ? (
@@ -66,14 +70,16 @@ const Form = () => {
           <input
             type="email"
             id="repeatEmail"
-            {...(repeatEmail != email && repeatEmail.length > 0
-              ? { className: "form-control is-invalid   " }
-              : { className: "form-control " })}
             value={repeatEmail}
+            className={
+              repeatEmail != email && repeatEmail.length > 0
+                ? "form-control is-invalid"
+                : "form-control"
+            }
             onChange={(e) => setRepeatEmail(e.target.value)}
           />
           {repeatEmail != email && repeatEmail.length > 0 ? (
-            <div className="invalid-feedback">Emaili muszą być takie same</div>
+            <div className="invalid-feedback">Emaile muszą być takie same</div>
           ) : null}
         </div>
         <button type="submit" className="btn btn-primary">
